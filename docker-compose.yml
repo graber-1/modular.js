@@ -1,0 +1,23 @@
+version: "2"
+services:
+  app:
+    image: "node:9"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./app:/home/node/app
+    command: "npm start"
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    container_name: node_app
+
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
